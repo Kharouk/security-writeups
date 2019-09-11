@@ -2,12 +2,17 @@ Host: bandit.labs.overthewire.org
 Port: 2220
 
 ========= bandit4 ==========
+
+```bash
 for files in /home/bandit4/inhere/*; do strings ; done
-koReBOKuIDDepwhWk7jZC0RTdopnAYKh
+```
+Key: **koReBOKuIDDepwhWk7jZC0RTdopnAYKh**
 
 ========= bandit5 ==========
+```
 find -size 1033c ! -executable
-DXjZPULLxYr17uwoI01bNLQbtFemEgo7
+```
+Key: **DXjZPULLxYr17uwoI01bNLQbtFemEgo7**
 
 =========== bandit6 ========
 find -group bandit6 -user bandit7 -size 33c 2>/dev/null

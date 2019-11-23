@@ -25,7 +25,7 @@ def exec_command():
         correct = input('did you get the flag? [y,n]: ')
     else:
         file = open('passwords.txt', 'a')
-        file.write(f"bandit{username} - {flag} - `{command}`\n".strip())
+        file.write(f"bandit{username} - {flag} - `{command}`\n")
         file.close()
         print(f"You just hacked the bandit{username} level. Great job!")
 

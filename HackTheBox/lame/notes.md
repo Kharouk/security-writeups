@@ -57,7 +57,8 @@ I then went to explore the other directories; next stop, home. I went into /home
 - Looking online, it seems very few experts used the `distccd` method, which makes me happy knowing I was able to solve user flag through that route! 
 - Learning about rabbit holes. the FTP was just a sidetrack aimed to distract. If it's taking too long and you think it should have definitely worked, it's probably a hole.
 
-## SSHing
+## SSHing (turned out to be pointless but will keep it here as thought process evidence)
+- I thought that maybe I could somehow pass my ssh keys onto the daemon server and log into the SSH that way 
 known\_hosts:
 |1|gS7DWzAxRvtufzEYnaW40GOvYu0=|5afWvF6s4R5Yaog0mimuOyNfXiI= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAstqnuFMBOZvO3WTEjP4TUdjgWkIVNdTq6kboEDjteOfc65TlI7sRvQBwqAhQjeeyyIk8T55gMDkOD0akSlSXvLDcmcdYfxeIF0ZSuT+nkRhij7XSSA/Oc5QSk3sJ/SInfb78e3anbRHpmkJcVgETJ5WhKObUNf1AKZW++4Xlc63M4KI5cjvMMIPEVOyR3AKmI78Fo3HJjYucg87JjLeC66I7+dlEYX6zT8i1XYwa/L1vZ3qSJISGVu8kRPikMv/cNSvki4j+qDYyZ2E5497W87+Ed46/8P42LNGoOV8OcX/ro6pAcbEPUdUEfkJrqi2YXbhvwIJ0gFMb6wfe5cnQew==
 

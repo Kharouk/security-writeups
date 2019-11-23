@@ -1,0 +1,17 @@
+SYN -> SYN ACK -> ACK
+
+We make the request, they respond saying yeah connect,
+then we connect.
+
+SYN -> SYN ACK -> RST
+
+If we don't really want to connect, and want to remain
+"Stealthy"
+
+
+Used both rapid7 and exploit-db to search for SMB 
+vulnerabilities on the Windows XP SP3 os. Found
+a relative path stack corruption that metasploit
+themselves created. :) 
+https://www.exploit-db.com/exploits/16362
+

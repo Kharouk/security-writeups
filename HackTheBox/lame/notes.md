@@ -22,4 +22,40 @@
     - "USER: 331 Please specify the password"
     - Not sure if I can enter the password in the msfconsole. 
 - Since this box is very CVE (Common Vulnerabilities Exposure), I knew I'm on the right track with finding vulnerabilities.
--
+- So I've never encountered **distccd** before, and researching it it looks like it's a Daemon. Supports ip based authentication from anyone, so apparently anyone can connect to it. It will distribute C code across several machines on a network.. Runs on port 3632 or through a tunnel command such as ssh (should not be listening for connections)
+    - And of course, metasploit does have an exploit. 
+    - `use exploit/unix/misc/distcc_exec`
+    - Connected! Command shell session 1. 
+        - It was a reverse TCP connection. 
+        - There was a command that echoed "lBeP2uEArTRJeeTX"
+        - Looks like I am inside a shell, landing inside /tmp/ territory
+        - I was able to go into /root/ folder, where I found a root.txt file. I tried opening it but I was denied. However, I did realise I was inside the root folder which should've denied me anyways. When checking the hidden files in the directory, I saw the '.ssh/' directory and I knew that maybe I can get the known_hosts and authorized_keys info to maybe be able to ssh in that other open port.
+
+There was also a "vnc.log" that I need to make sense of:
+```
+
+New 'X' desktop is lame:0
+
+Starting applications specified in /root/.vnc/xstartup
+Log file is /root/.vnc/lame:0.log
+```
+
+I then went to explore the other directories; next stop, home. I went into /home/makis and found a user.txt file with a key, did I draw blood?Yep! Owned the user.
+
+- So now I'm trying to crack root user. I did a bit more research on "lame", and found out it was a program used to create compressed audio files.. Not sure if it matters here. But I discovered I couldn't run lame anyways (didn't really have a shell) so I ran `shell` and got my sh going. Still could not run `lame` so I ran /bin/bash. Now I got my terminal in a familiar way: `daemon@lame:/tmp$ `, running lame now says its not installed and I need to ask admin to install it.. 
+- Spent the last hour trying to figure out the FTP port. It is using a version that is vulnerable (2.3.4) but I keep trying to break it (using a backdoor, enumerating, etc) and it's just not letting up. Will change up tactics back to the SSH and the SMB ports.
+    - Could it be that since the nmap returned saying that it allowed for "anonymous" connection, (Anonymous FTP Login allowed), that we can use anonymous@anonymous?
+    - Yep, logged iin! And it was a rabbit hole, nothing inside the FTP server.  
+
+## Post Box Notes
+- Looking online, it seems very few experts used the `distccd` method, which makes me happy knowing I was able to solve user flag through that route! 
+- Learning about rabbit holes. the FTP was just a sidetrack aimed to distract. If it's taking too long and you think it should have definitely worked, it's probably a hole.
+
+## SSHing
+known\_hosts:
+|1|gS7DWzAxRvtufzEYnaW40GOvYu0=|5afWvF6s4R5Yaog0mimuOyNfXiI= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAstqnuFMBOZvO3WTEjP4TUdjgWkIVNdTq6kboEDjteOfc65TlI7sRvQBwqAhQjeeyyIk8T55gMDkOD0akSlSXvLDcmcdYfxeIF0ZSuT+nkRhij7XSSA/Oc5QSk3sJ/SInfb78e3anbRHpmkJcVgETJ5WhKObUNf1AKZW++4Xlc63M4KI5cjvMMIPEVOyR3AKmI78Fo3HJjYucg87JjLeC66I7+dlEYX6zT8i1XYwa/L1vZ3qSJISGVu8kRPikMv/cNSvki4j+qDYyZ2E5497W87+Ed46/8P42LNGoOV8OcX/ro6pAcbEPUdUEfkJrqi2YXbhvwIJ0gFMb6wfe5cnQew==
+
+authorized\_keys:
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApmGJFZNl0ibMNALQx7M6sGGoi4KNmj6PVxpbpG70lShHQqldJkcteZZdPFSbW76IUiPR0Oh+WBV0x1c6iPL/0zUYFHyFKAz1e6/5teoweG1jr2qOffdomVhvXXvSjGaSFwwOYB8R0QxsOWWTQTYSeBa66X6e777GVkHCDLYgZSo8wWr5JXln/Tw7XotowHr8FEGvw2zW1krU3Zo9Bzp0e0ac2U+qUGIzIu/WwgztLZs5/D9IyhtRWocyQPE+kcP+Jz2mt4y1uA73KqoXfdw5oGUkxdFo9f1nu2OwkjOc+Wv8Vw7bwkf+1RgiOMgiJ5cCs4WocyVxsXovcNnbALTp3w== msfadmin@metasploitable
+
+

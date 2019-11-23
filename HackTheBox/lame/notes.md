@@ -46,6 +46,12 @@ I then went to explore the other directories; next stop, home. I went into /home
 - Spent the last hour trying to figure out the FTP port. It is using a version that is vulnerable (2.3.4) but I keep trying to break it (using a backdoor, enumerating, etc) and it's just not letting up. Will change up tactics back to the SSH and the SMB ports.
     - Could it be that since the nmap returned saying that it allowed for "anonymous" connection, (Anonymous FTP Login allowed), that we can use anonymous@anonymous?
     - Yep, logged iin! And it was a rabbit hole, nothing inside the FTP server.  
+- Next I decided to investigate the SMB and SSH ports. SSH port might be a bit of a waste of time since it usually requires brute force and vulnerabilities might not be very common (unless I write my own).
+- Checking on that smb version again, I google and there IS an exploit for it, (Samba 3.0.20-Debian). Metasploit obviously has one called `exploit/multi/samba/usermap_script` -> And I get the shell as root!!! Which is the exact same shell as I received when breaking the DistCC protocol, only I'm given root. That is LAME. 
+- So many turns leading nowhere in this one, but it was fun being able to solve this one on my own. First ever box! Will remember it fondly. Good way of practicing whilst studying for my CompTIA's Network+ certificate.
+- Found root key in `/root/root.txt`
+
+
 
 ## Post Box Notes
 - Looking online, it seems very few experts used the `distccd` method, which makes me happy knowing I was able to solve user flag through that route! 

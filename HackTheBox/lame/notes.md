@@ -56,6 +56,7 @@ I then went to explore the other directories; next stop, home. I went into /home
 ## Post Box Notes
 - Looking online, it seems very few experts used the `distccd` method, which makes me happy knowing I was able to solve user flag through that route! 
 - Learning about rabbit holes. the FTP was just a sidetrack aimed to distract. If it's taking too long and you think it should have definitely worked, it's probably a hole.
+- A Faster way to look up files in a shell is using `locate` and `updatedb`. 
 
 ## SSHing (turned out to be pointless but will keep it here as thought process evidence)
 - I thought that maybe I could somehow pass my ssh keys onto the daemon server and log into the SSH that way 
